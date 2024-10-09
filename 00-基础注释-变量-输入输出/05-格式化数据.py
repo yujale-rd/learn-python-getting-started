@@ -25,6 +25,23 @@ print(formatted_string)  # 输出: My name is yujale and I am 30 years old.
 
 """
 
+name = 'xiao_ming'
+age = 18
+height = 1.85
+weight = 69.5
+marriage = False
+
+# 一个占位符的格式化输出
+print('学员的姓名是 %s' % name)
+print('学员的年龄是 %d' % age)
+print('学员的身高是 %f' % height)
+print('学员的体重是 %f' % weight)
+print('学员的婚姻状况是 %s' % marriage)
+
+# 有多个动态变量的时候,我们就需要使用多个占位符进行占位
+print('学员的姓名是 %s, 学员的年龄是 %d 岁, 学员的身高是 %f 米, 学员的体重是 %f kg, 学员的婚姻状况是 %s' % (
+    name, age, height, weight, marriage))
+
 # str.format() 方法
 
 # 相比于 %，str.format() 更加灵活和强大，它允许在字符串中插入占位符 {}，并在后面传入值进行替换。
