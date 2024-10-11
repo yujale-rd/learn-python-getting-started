@@ -5,7 +5,7 @@
 #
 # 上下文管理器的使用主要依赖于 with 语句。
 
-with expression as variable:
+# with expression as variable:
     # 在这个代码块中可以使用变量
     # 代码块结束后，资源将自动清理
 
