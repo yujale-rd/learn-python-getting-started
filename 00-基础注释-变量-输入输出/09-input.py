@@ -1,5 +1,8 @@
-# input() 函数用于从用户处获取输入。它会暂停程序执行，直到用户输入数据并按下回车键。
-# input() 函数返回的始终是字符串类型，即使用户输入的是数字，也需要手动进行类型转换。
+"""
+1. input() 的基本用法
+
+input() 会暂停程序运行，直到用户输入数据并按下回车键。无论输入的内容是什么，返回值始终是 字符串类型。
+"""
 
 user_input = input("Please enter your name: ")
 print(f"Hello, {user_input}!")
@@ -8,15 +11,16 @@ print(f"Hello, {user_input}!")
 
 
 
-# 输入类型转换
-# 因为 input() 返回的总是字符串，有时需要手动将输入转换为其他类型（如整型或浮点型）。
-#
-# 将输入转换为整数 (int)
+"""
+2. 输入的类型转换
 
+当需要数值计算时，需要将字符串转换为整数或浮点数。注意处理可能的异常。
+
+"""
+# 整数转换
 age = int(input("Please enter your age: "))
 print(f"Next year, you will be {age + 1} years old.")
-
-# 将输入转换为浮点数 (float)
+# 整数转换
 price = float(input("Please enter the price: "))
 print(f"The price with tax is {price * 1.1:.2f}.")
 
@@ -30,17 +34,19 @@ try:
 except ValueError:
     print("That's not a valid number!")
 
+"""
+3. 输入提示优化
 
-# 3. 输入提示清晰
+清晰的提示可以提高用户体验。建议包括以下信息：
+	•	输入要求：类型、范围、格式等。
+	•	示例输入：让用户更容易理解。
+"""
+number = input("Enter a number between 1 and 10 (e.g., 5): ")
+"""
+4. 输入验证和限制
 
-# 为了避免用户输入错误，提供清晰的提示信息非常重要。提示应说明预期的输入类型和要求。
-number = input("Enter a number between 1 and 10: ")
-# 4. 输入限制和验证
-#
-# 你可以对输入的数据进行验证或限制。例如，限制输入的长度、数据范围等。
-#
-# 	•	限制输入长度：
-
+限制输入长度
+"""
 name = input("Please enter your name (max 10 characters): ")
 if len(name) > 10:
     print("Name is too long! Please enter up to 10 characters.")
@@ -78,3 +84,12 @@ while True:
 # 	•	异常处理：通过 try...except 防止非预期类型的数据导致程序崩溃。
 # 	•	清晰的输入提示：提供明确的输入指示，告知用户应该输入什么。
 # 	•	输入限制与验证：根据需求对输入的长度、范围或格式进行限制和检查。
+
+"""
+7. 空输入处理
+
+避免用户输入空值或仅按回车：
+"""
+user_input = input("Please enter something: ").strip()
+if not user_input:
+    print("Input cannot be empty!")

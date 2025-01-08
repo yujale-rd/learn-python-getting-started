@@ -5,58 +5,47 @@
 # - str.format() 方法
 # - f-string（格式化字符串字面量，Python 3.6+ 引入）
 
+"""
+1. 百分号格式化（%）
 
-# 百分号格式化 （%）
+这种方式是 Python 中最早的字符串格式化方法，它使用占位符（如 %s、%d）来格式化字符串。虽然它简单直接，但相对不够灵活，特别是在处理多个变量时。
+
+常用占位符：
+	•	%s：字符串
+	•	%d：整数
+	•	%f：浮点数
+	•	%x：十六进制整数
+	•	%e：科学计数法表示法
+"""
 name = "yujale"
 age = 30
-
-# 使用百分号格式化
 formatted_string = "My name is %s and I am %d years old." % (name, age)
 print(formatted_string)  # 输出: My name is yujale and I am 30 years old.
 
-
-"""
-常用占位符：
-
-- %s：字符串
-- %d：整数
-- %f：浮点数
-- %x：十六进制整数
-
-"""
-
-name = 'xiao_ming'
-age = 18
-height = 1.85
-weight = 69.5
+height = 1.75
 marriage = False
+
 
 # 一个占位符的格式化输出
 print('学员的姓名是 %s' % name)
 print('学员的年龄是 %d' % age)
 print('学员的身高是 %f' % height)
-print('学员的体重是 %f' % weight)
 print('学员的婚姻状况是 %s' % marriage)
+print("姓名：%s, 年龄：%d, 身高：%.2f, 婚姻状况：%s" % (name, age, height, marriage))
 
-# 有多个动态变量的时候,我们就需要使用多个占位符进行占位
-print('学员的姓名是 %s, 学员的年龄是 %d 岁, 学员的身高是 %f 米, 学员的体重是 %f kg, 学员的婚姻状况是 %s' % (
-    name, age, height, weight, marriage))
 
-# str.format() 方法
+"""
+2. str.format() 方法
 
-# 相比于 %，str.format() 更加灵活和强大，它允许在字符串中插入占位符 {}，并在后面传入值进行替换。
+str.format() 方法比百分号格式化更加灵活，支持使用位置参数、命名参数、格式说明符以及表达式。这使得它在多种场景下都非常有用。
+"""
 
-name = "yujale"
-age = 30
-
-# 使用 format 方法
 formatted_string = "My name is {} and I am {} years old.".format(name, age)
 print(formatted_string)  # 输出: My name is yujale and I am 30 years old.
 
-
-# 指定位置或变量名：
-# 通过索引指定位置
-
+"""
+使用索引指定位置：
+"""
 formatted_string = "My name is {0} and I am {1} years old.".format(name, age)
 print(formatted_string)  # 输出: My name is yujale and I am 30 years old.
 
@@ -69,15 +58,11 @@ print(formatted_string)  # 输出: My name is yujale and I am 30 years old.
 pi = 3.1415926
 formatted_string = "Pi is approximately {:.2f}".format(pi)
 print(formatted_string)  # 输出: Pi is approximately 3.14
+"""
+3. f-string（格式化字符串字面量）
 
-# f-string（格式化字符串字面量）
-#
-# f-string 是 Python 3.6+ 引入的一种格式化方式，使用更为简洁直接。它通过在字符串前加上 f，并直接在 {} 中插入变量名或表达式。
-
-name = "yujale"
-age = 30
-
-# 使用 f-string
+Python 3.6 引入的 f-string 语法提供了一种更简洁且高效的字符串格式化方式。通过在字符串前加上 f，可以直接将变量嵌入字符串中，支持表达式、格式说明符等功能。
+"""
 formatted_string = f"My name is {name} and I am {age} years old."
 print(formatted_string)  # 输出: My name is yujale and I am 30 years old.
 
@@ -94,6 +79,12 @@ print(f"The sum of {a} and {b} is {a + b}.")  # 输出: The sum of 10 and 20 is 
 pi = 3.1415926
 print(f"Pi is approximately {pi:.2f}")  # 输出: Pi is approximately 3.14
 
+"""
+f-string 的优势：
+	•	简洁性：相比 str.format() 和 % 格式化，代码更简洁。
+	•	性能：f-string 在性能上优于 str.format() 和 % 格式化，特别是在需要频繁格式化字符串的情况下。
+	•	表达式支持：f-string 允许直接在花括号内插入表达式，这使得代码更具可读性和灵活性。
+"""
 
 # 总结
 
