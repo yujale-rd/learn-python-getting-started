@@ -4,14 +4,6 @@
 也可以使用逻辑运算符and, or, not来组合条件。
 if 语句是条件表达式的主要实现方式。根据条件的不同，可以使用 if、elif 和 else 来组织程序的执行流程。
 
-
-if condition:
-    # 当 condition 为 True 时执行的代码块
-elif another_condition:
-    # 当另一个 condition 为 True 时执行的代码块
-else:
-    # 当上面所有条件都为 False 时执行的代码块
-
 - condition: 这是一个布尔表达式，当其值为 True 时，执行 if 之后的代码块。
 - elif: 可以有多个 elif，当上面的条件不成立时，逐一检查 elif 的条件。
 - else: 如果所有 if 和 elif 的条件都为 False，就执行 else 的代码块。else 是可选的。
@@ -20,11 +12,25 @@ else:
 
 # 基本 if 语句
 
+"""
+基本语法
+if condition:
+    # 条件为 True 时执行的代码
+elif another_condition:
+    # 当上一个条件为 False 且当前条件为 True 时执行
+else:
+    # 当所有条件都为 False 时执行
+"""
+
+"""
+1. 基本使用
+
+简单条件判断
+"""
 age = 20
 if age >= 18:
-    print("成年人")
+    print("成年人")  # 输出: 成年人
 
-# 在上面的示例中，当 age 大于等于 18 时，会输出 “成年人”。
 
 # if-else 语句
 
@@ -32,12 +38,10 @@ age = 15
 if age >= 18:
     print("成年人")
 else:
-    print("未成年人")
+    print("未成年人")  # 输出: 未成年人
 
-# 在这个例子中，如果 age 小于 18，则输出 “未成年人”。
 
 # if-elif-else 语句
-
 score = 85
 if score >= 90:
     print("优秀")
@@ -46,21 +50,21 @@ elif score >= 75:
 elif score >= 60:
     print("及格")
 else:
-    print("不及格")
-
-# 根据 score 的值，程序会输出不同的成绩评价。
+    print("不及格")  # 输出: 良好
 
 
-# 多个条件组合
+"""
+2. 组合条件
 
+通过 逻辑运算符 and、or 和 not，可以组合多个条件
+"""
 age = 25
 if age >= 18 and age < 60:
-    print("成年人")
+    print("成年人")  # 输出: 成年人
 elif age >= 60:
     print("老年人")
 else:
     print("未成年人")
-# 通过使用 and 和 or 等逻辑运算符，可以组合多个条件进行判断。
 
 
 
