@@ -1,12 +1,13 @@
-# while 循环是另一种循环控制结构，用于重复执行一段代码，直到指定的条件为 False 为止。
-
 """
+while 循环是一种灵活的控制流结构，用于在条件为 True 时反复执行代码块。它特别适合在需要基于某个条件动态控制循环次数的场景中使用。
+
+
 基本语法
 while 条件:
     # 循环体
 
-条件：这是一个返回 True 或 False 的表达式。当条件为 True 时，执行循环体；当条件为 False 时，循环结束。
-循环体：这是在条件为 True 时重复执行的代码。
+	•	条件：是一个布尔表达式。当其值为 True 时，执行循环体；当为 False 时，退出循环。
+	•	循环体：条件为 True 时，重复执行的代码块。
 """
 
 count = 1
@@ -14,27 +15,34 @@ while count <= 5:
     print(f"Count: {count}")
     count += 1
 
-# 在这个例子中，while 循环会一直运行，直到 count 超过 5。每次循环，count 的值增加 1，直到条件 count <= 5 不再成立。
+"""
+2. 注意事项
 
-# 注意事项
-# 	1.	避免无限循环：如果 while 循环的条件始终为 True，则循环将一直进行下去，可能导致程序卡死。要小心设计循环条件，确保有退出的条件。
+(1) 避免无限循环
 
+如果循环条件始终为 True 且没有退出逻辑，while 循环将进入死循环状态。
 while True:
     print("This is an infinite loop!")  # 无限循环
 
-# 	2.	循环中的变量更新：在循环体中需要更新循环条件涉及的变量，否则可能导致死循环。
+"""
 
+"""
+(2) 变量更新
+
+在循环体内应合理更新循环条件涉及的变量，否则可能导致死循环。
+"""
 count = 1
 while count <= 5:
     print(count)
     # 错误，变量没有更新，导致死循环
 
-# while 循环中的 break 和 continue
-#
-# 	•	break：立即终止循环。
-# 	•	continue：跳过当前循环的剩余部分，直接进入下一次循环。
+"""
+3. while 循环中的控制语句
 
+(1) break：终止循环
 
+break 用于立即退出当前循环，跳到循环后面的代码。
+"""
 count = 1
 while count <= 5:
     print(f"Count: {count}")
@@ -42,6 +50,11 @@ while count <= 5:
         break  # 当 count 等于 3 时，退出循环
     count += 1
 
+"""
+(2) continue：跳过当前迭代
+
+continue 用于跳过当前循环剩余的代码，直接进入下一次循环。
+"""
 count = 0
 while count < 5:
     count += 1
@@ -50,11 +63,11 @@ while count < 5:
     print(f"Count: {count}")
 
 # 在这个例子中，当 count == 3 时，continue 会跳过该次循环的 print 语句。
-
-# 使用 else 子句
-#
-# while 循环可以带一个 else 子句，当循环正常结束时（即条件变为 False 而退出循环），会执行 else 中的代码。如果是通过 break 退出循环，则 else 部分不会被执行。
 """
+4. 使用 else 子句
+
+while 循环支持 else 子句。当循环正常结束时（条件为 False 退出），会执行 else 块；如果使用 break 退出循环，则不会执行 else 块。
+
 while 条件:
     条件为真时执行的代码
 else:
@@ -70,3 +83,25 @@ else:
 
 # 如果循环被 break 提前结束，则 else 语句不会执行。
 
+
+#简单用户登录验证
+password = "12345"
+attempts = 3
+
+while attempts > 0:
+    user_input = input("请输入密码：")
+    if user_input == password:
+        print("密码正确，欢迎！")
+        break
+    else:
+        attempts -= 1
+        print(f"密码错误，您还有 {attempts} 次机会。")
+else:
+    print("尝试次数过多，账户已锁定。")
+
+"""
+6. 适用场景
+	1.	基于条件的动态循环：例如读取用户输入，直到满足某个条件。
+	2.	无限循环：配合 break 实现，如服务器监听。
+	3.	实时监控状态：如检查任务完成状态或等待外部事件。
+"""
