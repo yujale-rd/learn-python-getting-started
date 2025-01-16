@@ -1,9 +1,16 @@
-# Python 列表（List）
-# 列表（list）是 Python 中的一种内置数据类型，用于存储多个有序的元素。列表中的元素可以是任何数据类型（整数、浮点数、字符串，甚至是另一个列表），且列表是可变的，这意味着可以修改列表中的元素。
+"""
+Python 列表（List）
+列表（list）是 Python 中的一种内置数据类型，用于存储多个有序的元素。
+列表中的元素可以是任何数据类型（整数、浮点数、字符串，甚至是另一个列表），且列表是可变的，这意味着可以修改列表中的元素。
 
-# 创建列表
-# 列表用方括号 [] 来表示，元素之间用逗号分隔。列表可以是空的，也可以包含多个元素：
-# 定义一个空列表
+"""
+
+"""
+1. 列表基础
+	•	定义： 列表是有序、可变的集合，支持多种数据类型。
+	•	语法： 使用方括号 []，元素用逗号 , 分隔。
+"""
+# 空列表
 empty_list = []
 
 # 定义一个包含整数的列表
@@ -18,10 +25,10 @@ mixed_list = [1, 'apple', True, 3.14]
 # 定义一个包含列表的列表（嵌套列表）
 nested_list = [[1, 2], ['a', 'b', 'c'], [True, False]]
 
-# 访问列表元素
+"""
+# 访问列表元素 使用索引 list[index]。
 # 通过索引可以访问列表中的元素，索引从 0 开始，也可以使用负数索引从列表末尾开始计数。
-
-
+"""
 fruits = ["apple", "banana", "orange"]
 
 # 访问第一个元素
@@ -30,7 +37,7 @@ print(fruits[0])  # 输出: apple
 # 访问最后一个元素
 print(fruits[-1])  # 输出: orange
 
-# 修改列表元素
+# 修改元素： list[index] = value。
 # 列表是可变的，可以修改列表中的元素
 
 fruits = ["apple", "banana", "orange"]
@@ -47,24 +54,6 @@ append() 方法用于在列表的末尾添加一个元素。
 
 list.append(element)
 element：要添加到列表末尾的元素。
-
-
-insert() 方法
-insert() 方法用于在列表的指定位置插入一个元素。
-
-list.insert(index, element)
-index：要插入元素的位置索引。
-element：要插入的元素。
-
-extend() 方法
-extend() 方法用于在列表的末尾一次性追加另一个序列中的多个元素（可以是列表、元组、集合等）。
-list.extend(iterable)
-iterable：一个可迭代对象，其元素将被添加到列表末尾。
-使用 + 运算符
-可以使用 + 运算符将两个列表合并，返回一个新的列表。
-
-使用 += 运算符
-可以使用 += 运算符将一个列表中的所有元素添加到另一个列表的末尾。
 """
 
 fruits = ["apple", "banana"]
@@ -73,16 +62,71 @@ fruits = ["apple", "banana"]
 fruits.append("orange")
 print(fruits)  # 输出: ['apple', 'banana', 'orange']
 
+"""
+
+insert() 方法
+insert() 方法用于在列表的指定位置插入一个元素。
+
+list.insert(index, element)
+index：要插入元素的位置索引。
+element：要插入的元素。
+"""
+
 # 在指定位置插入元素
 fruits.insert(1, "pear")
 print(fruits)  # 输出: ['apple', 'pear', 'banana', 'orange']
 
+"""
+extend() 方法
+extend() 方法用于将可迭代对象（如列表、元组、集合等）的所有元素追加到列表的末尾。它会直接修改原列表，而不会返回新的列表。
+list.extend(iterable)
+iterable：一个可迭代对象，其元素将被添加到列表末尾。
+"""
+
+fruits = ['apple', 'banana']
+vegetables = ['carrot', 'potato']
+
+fruits.extend(vegetables)
+print(fruits)  # 输出: ['apple', 'banana', 'carrot', 'potato']
+
+fruits = ['apple', 'banana']
+more_items = ('grape', 'melon')
+
+fruits.extend(more_items)
+print(fruits)  # 输出: ['apple', 'banana', 'grape', 'melon']
+
+
+"""
+使用 + 运算符
+可以使用 + 运算符将两个列表合并，返回一个新的列表。
+
+使用 += 运算符
+可以使用 += 运算符将一个列表中的所有元素添加到另一个列表的末尾。
+"""
+
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+
+result = list1 + list2
+print(result)  # 输出: [1, 2, 3, 4, 5, 6]
+print(list1)   # 输出: [1, 2, 3]（原列表未修改）
+print(list2)   # 输出: [4, 5, 6]
+
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+
+list1 += list2
+print(list1)  # 输出: [1, 2, 3, 4, 5, 6]
+print(list2)  # 输出: [4, 5, 6]（右侧列表不受影响）
+
+"""
 # 列表删除元素
 
 # remove(element)：删除列表中的第一个匹配项。
 # pop(index)：移除并返回指定索引处的元素，如果不指定索引，则移除最后一个元素。
 # del list[index]：删除指定索引处的元素。
 # clear()：清空列表。
+"""
 
 fruits = ["apple", "banana", "orange"]
 
@@ -103,10 +147,12 @@ fruits = ["apple", "banana", "orange"]
 del fruits[1]
 print(fruits)
 
+"""
 
 # 列表的排序
 # sort()：对列表中的元素进行升序排序。
 # reverse()：反转列表中元素的顺序。
+"""
 
 numbers = [5, 2, 9, 1, 5, 6]
 

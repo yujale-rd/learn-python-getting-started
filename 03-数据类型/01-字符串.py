@@ -1,65 +1,61 @@
 #  字符串（str）
 
 # Python 中，字符串是用于表示文本数据的数据类型，他是不可变的数据类型。这意味着字符串一旦创建，就无法更改它的值。
-# Python 的字符串可以使用单引号 ' '、双引号 " "、三引号 ''' ''' 或 """ """ 来定义。
+"""
+1. 字符串定义
+	•	字符串是用于存储文本数据的不可变序列。
+	•	定义方式：
+	•	单引号：'string'
+	•	双引号："string"
+	•	三引号（支持多行字符串）：'''multi-line''' 或 """"""
+"""
 
-# 使用建议
-# 如果字符串中含有单引号 ' 而不含有双引号 "，则可以使用双引号来定义字符串，反之亦然。
-# 如果字符串需要跨多行，推荐使用三重引号 ''' ''' 或者 """ """，以保持代码的可读性。
-# 在多行文本或需要包含大量格式化内容的情况下，使用三重引号可以更方便地管理字符串
+"""
+9. 注意事项
+	•	字符串是不可变的：任何修改操作都会返回一个新字符串。
+	•	索引越界：访问超出范围的索引会抛出 IndexError 异常。
+	•	切片：切片操作是左闭右开区间，且不会改变原始字符串。
+"""
 
+"""
+2. 常用字符串操作
 
-# 字符串创建
-# 可以使用单引号、双引号或三引号来定义字符串。推荐的使用方式是根据字符串的内容选择不同的引号，避免转义字符的使用。
+(1) 创建与输出
+"""
+# 创建字符串
+str1 = 'Hello'
+str2 = "Python"
+str3 = """This is
+a multi-line string"""
+print(str1, str2, str3)
 
-# 单引号
-str1 = 'Hello, World!'
-print(str1)
-
-# 双引号
-str2 = "Python is fun!"
-print(str2)
-
-# 三引号（用于多行字符串）
-str3 = '''This is a 
-multi-line string'''
-print(str3)
-
-# 或者使用双引号的三引号
-str4 = """Another
-multi-line string"""
-print(str4)
-
-# 字符串输出
-# 在Python中，使用 print() 函数来输出字符串是最常见的方式
-
-str5 = "Hello, World!"
-print(str5)
 
 # 字符串输入
 # 在Python中，使用 input() 函数接收用户输入的字符串
 
 
+"""
+(2) 拼接与重复
+"""
 # 字符串拼接
-
-# k可以使用 + 运算符将多个字符串连接起来
-greeting = "Hello" + ", " + "World!"
+greeting = "Hello, " + "World!"
 print(greeting)  # 输出: Hello, World!
-
 
 # 重复字符串
 repeat_str = "Ha" * 3
 print(repeat_str)  # 输出: HaHaHa
 
-# 字符串索引
-# 字符串是一个字符序列，可以通过索引访问某个字符。索引从 0 开始，也可以使用负数索引从右往左数。
+"""
+(3) 索引与切片
+字符串是一个字符序列，可以通过索引访问某个字符。索引从 0 开始，也可以使用负数索引从右往左数。
+"""
 text = "Python"
-print(text[0])  # 输出: P
-print(text[1])  # 输出: y
-print(text[-1])  # 输出: n（负数索引表示从右向左）
+# 索引
+print(text[0])    # 输出: P
+print(text[-1])   # 输出: n
 
-# 字符串切片
-# 可以通过切片操作获取字符串的子串。切片的格式是 字符串[start:end:step]。
+# 切片
+# # 可以通过切片操作获取字符串的子串。切片的格式是 字符串[start:end:step]。
 """
 string[start:end:step]
 start：起始索引，表示切片开始的位置（包含在切片内）。
@@ -74,6 +70,9 @@ step：步长，表示从起始索引到结束索引的间隔，默认为1（可
 如果省略start，则默认从序列的开头开始；如果省略end，则默认到序列的末尾；如果省略step，则默认为1。
 切片操作是左闭右开的，即包含start索引，不包含end索引。
 """
+print(text[1:4])  # 输出: yth
+print(text[:3])   # 输出: Pyt
+print(text[::2])  # 输出: Pto (步长为2)
 
 s = "Hello, World!"
 print(s[7:])  # 输出 'World!' 从索引7开始到末尾。
@@ -88,18 +87,24 @@ s = "0123456789"
 print(s[2:9:2])  # 输出 '2468' 从索引2开始到索引9之前，步长为2。
 
 
-# 字符串长度
-
-# 可以使用 len() 函数获取字符串的长度。
+"""
+3. 字符串基本方法
+"""
+"""
+字符串长度
+可以使用 len() 函数获取字符串的长度。
+"""
 
 text = "Python"
 print(len(text))  # 输出: 6
 
+"""
 # 字符串大小写转换
 # upper()：将字符串全部转换为大写。
 # lower()：将字符串全部转换为小写。
 # capitalize()：将字符串的第一个字符转换为大写。
 # title()：将字符串中每个单词的首字母大写。
+"""
 
 text = "hello python"
 print(text.upper())      # 输出: HELLO PYTHON
@@ -107,23 +112,30 @@ print(text.lower())      # 输出: hello python
 print(text.capitalize()) # 输出: Hello python
 print(text.title())      # 输出: Hello Python
 
+"""
 # 字符串去除空格
 # strip()：移除字符串两端的空格。
 # lstrip()：移除左边的空格。
 # rstrip()：移除右边的空格。
+"""
 text = "   Hello, Python!   "
 print(text.strip())  # 输出: Hello, Python!
 print(text.lstrip())  # 输出: Hello, Python!
 print(text.rstrip())  # 输出:    Hello, Python!
 
+"""
 # 字符串查找
 
 # find(sub)：查找子字符串，返回第一个匹配项的索引，找不到返回 -1。
 # index(sub)：与 find() 类似，但找不到时抛出异常。
 # count(sub)：返回子字符串在字符串中的出现次数。
+"""
+# 查找
 text = "Python is awesome!"
-print(text.find("is"))      # 输出: 7
-print(text.count("o"))      # 输出: 2
+print(text.find("is"))    # 输出: 7
+print(text.count("o"))    # 输出: 2
+
+
 
 
 # 字符串替换
@@ -230,8 +242,8 @@ print(text3.istitle())  # 输出: True
 # 字符串检查开头和结尾以某个子串开始或结束
 # startswith() 和 endswith() 用于检查字符串是否以某个子串开始或结束。
 text = "Python is fun"
-print(text.startswith("Python"))  # 输出: True
-print(text.endswith("fun"))       # 输出: True
+print(text.startswith("Python"))  # True
+print(text.endswith("fun"))       # True
 
 # 判断子字符串
 
