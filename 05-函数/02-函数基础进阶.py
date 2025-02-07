@@ -171,6 +171,8 @@ inner_func()  # 输出: This is the inner function.
 """
 
 """
+函数调用: 通过小括号的方式让python解释器找到在内存中的函数代码并运行
+函数引用: 通过函数名称本身获取函数地址, 这个不是运行代码
 1. 函数内部调用自身
 
 递归函数必须在其内部直接或间接地调用自身，这是递归的基本特性。
@@ -273,4 +275,95 @@ print(sorted_students)
 	1.	只能包含单个表达式：匿名函数的功能有限，不能写多行代码。
 	2.	没有名称：调试时可能不便于识别。
 	3.	无类型注解：不支持为参数或返回值添加类型注解。
+"""
+
+"""
+1. 装饰器（Decorators）
+
+装饰器是 Python 中的一种高级功能，它允许你在不修改函数代码的情况下扩展函数的功能。装饰器本质上是一个函数，它接收一个函数作为参数并返回一个函数。
+定义和应用装饰器
+
+装饰器工作原理：
+	1.	装饰器函数接收一个函数作为参数。
+	2.	装饰器函数内部定义一个新的函数（通常称为 wrapper）。
+	3.	在 wrapper 函数中，你可以添加额外的逻辑，比如日志记录、性能测试、权限检查等。
+	4.	在 wrapper 函数中调用原始函数。
+	5.	返回 wrapper 函数作为装饰后的函数。	
+装饰器通常以 @ 符号应用到目标函数上：
+"""
+# 定义装饰器
+def decorator(func):
+    def wrapper():
+        print("Before function call")
+        func()
+        print("After function call")
+    return wrapper
+
+# 使用装饰器
+@decorator
+def say_hello():
+    print("Hello, World!")
+
+say_hello()
+
+"""
+Before function call
+Hello, World!
+After function call
+"""
+
+"""
+参数化装饰器
+
+装饰器可以传入参数，例如，如果你希望一个装饰器能够接收一些配置参数，可以像下面这样实现：
+"""
+def decorator_with_args(arg):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            print(f"Decorator argument: {arg}")
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+@decorator_with_args("My Argument")
+def greet(name):
+    print(f"Hello, {name}!")
+
+greet("Alice")
+
+"""
+2. 闭包（Closure）
+
+闭包是指一个函数在其内部引用了外部函数的变量，并且返回了该函数。闭包可以保存外部函数的状态，即使外部函数已经执行完毕。
+"""
+def outer(x):
+    def inner(y):
+        return x + y  # inner 引用了外部函数 outer 的变量 x
+    return inner
+
+add_5 = outer(5)
+print(add_5(3))  # 输出 8
+
+# 在上面的例子中，add_5 是 inner 函数的引用，并且保存了外部函数 outer 中的变量 x 的值。闭包的特点是，它使得外部函数的变量可以在内部函数中长期有效。
+
+
+"""
+3. 函数注解（Function Annotations）
+
+函数注解允许为函数的参数和返回值提供类型提示。虽然这些注解不会影响代码的执行，但是它们可以提高代码的可读性并帮助开发者理解函数的使用。
+"""
+def greet(name: str, age: int) -> str:
+    return f"Hello, {name}. You are {age} years old."
+
+print(greet("Alice", 30))
+
+# 你可以通过 __annotations__ 属性来访问函数的注解：
+print(greet.__annotations__)  # 输出 {'name': <class 'str'>, 'age': <class 'int'>, 'return': <class 'str'>}
+
+"""
+函数的调用栈与优化
+
+Python 中的函数调用会有一个调用栈。每次函数调用时，会将当前函数的执行状态保存到栈中，直到当前函数返回。在递归中，调用栈的深度会逐步增加，如果深度过大，可能会导致 RecursionError。
+
+为了优化递归调用，尽量避免过深的递归。对于深度较大的递归问题，可以使用迭代替代递归，或者使用显式栈来模拟递归。
 """
