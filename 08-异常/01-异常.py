@@ -137,3 +137,63 @@ ValueError: Invalid operation
   Caused by: ZeroDivisionError: division by zero
 	•	from e 表示将原始的 ZeroDivisionError 异常附加到新抛出的 ValueError 异常上，形成异常链。
 """
+
+# 异常的层级结构
+
+"""
+Python 中的异常类是一个层级结构，所有的异常都继承自 BaseException 类。常见的异常继承自 Exception 类，而一些更底层的异常（比如 SystemExit、KeyboardInterrupt）继承自 BaseException。理解这一点有助于更好地处理异常。
+	•	BaseException：所有异常的基类。
+	•	Exception：标准的异常基类，继承自 BaseException。
+	•	ArithmeticError：算术相关的错误，如除零错误（ZeroDivisionError）。
+	•	LookupError：查找相关的错误，如索引超出范围（IndexError）和键不存在（KeyError）。
+	•	ValueError：值相关的错误，如传入了无效的参数类型。
+	•	SystemExit：程序正常退出时抛出的异常，通常通过 sys.exit() 触发。
+	•	KeyboardInterrupt：用户手动中断程序时抛出的异常，如按下 Ctrl+C。
+	•	GeneratorExit：与生成器相关的异常。
+
+这种层级结构说明了异常类型之间的关系，捕获父类异常时，子类异常也会被捕获，但如果你想捕获特定的异常，应该尽量避免捕获 Exception 类的通用异常，而是直接捕获具体的异常类。
+"""
+
+"""
+2. 异常的作用域
+
+异常捕获和处理时，需要注意异常的作用域。异常的作用域是指异常处理器的作用范围，通常遵循从内到外的原则。
+如果在一个代码块中抛出了异常，而这个异常没有被当前代码块的 except 捕获，Python 会沿着调用栈向上查找直到找到合适的 except 语句。
+如果没有找到合适的处理器，程序会终止并显示错误。
+
+3. 异常的性能
+
+异常机制的性能开销相对较高。在 Python 中，异常的抛出和捕获是比较重的操作，因此在性能敏感的代码中应尽量避免大量使用异常来控制程序流。
+异常应该用于处理意外错误，而不是用来执行常规逻辑。
+"""
+
+"""
+4. 异常的传递
+
+异常可以传递给调用者，也可以通过 raise 语句向上层函数传递。通过 raise 语句的使用，程序可以在合适的时机停止执行并转交给上层的异常处理机制。这种传递机制有助于逐层捕获和处理错误，并且可以提供更详细的错误信息。
+"""
+def process_data(data):
+    if data is None:
+        raise ValueError("Data cannot be None")
+    # 继续处理数据
+
+def main():
+    try:
+        process_data(None)
+    except ValueError as e:
+        print(f"Error in main: {e}")
+
+main()
+# 在这个例子中，ValueError 从 process_data 函数抛出，并在 main 函数中被捕获，显示了异常传递的机制。
+
+"""
+5. with 语句与异常处理
+
+with 语句是 Python 中的上下文管理器，通常用于需要清理资源的场景，如文件、数据库连接等。在异常发生时，with 语句的作用是自动处理资源的释放，确保无论是否发生异常，都会执行清理操作。
+"""
+with open("data.txt", "r") as file:
+    content = file.read()
+    if len(content) == 0:
+        raise ValueError("File is empty")
+    print(content)
+# 在这个例子中，with 会确保文件在读取结束后正确关闭，避免在异常发生时文件没有被关闭的问题。
